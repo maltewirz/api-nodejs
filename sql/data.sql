@@ -1,0 +1,11 @@
+DROP TABLE IF EXISTS geo;
+
+CREATE TABLE geo (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  latitude FLOAT NOT NULL,
+  longitude FLOAT NOT NULL,
+  additional VARCHAR(255) NOT NULL,
+  distance_office FLOAT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
