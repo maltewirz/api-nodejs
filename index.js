@@ -11,18 +11,30 @@ const compression = require("compression");
 app.use(compression());
 app.use(express.json());
 
-app.post("/api/upload/", upload.single("file"), async (req, res) => { // make sure to use key "file" in postman
-  console.log("filename without json: ", req.file.originalname.substring(0, req.file.originalname.length-5));
+app.post("/api/upload/", upload.single("file"), async (req, res) => { // use key "file" in postman
+  let fileName = req.file.originalname.substring(0, req.file.originalname.length-5);
   let filePath = `./uploads/${req.file.filename}`;
-  console.log(filePath);
-  let fileContent = fs.readFileSync(filePath, "utf-8");
-  console.log(fileContent);
-  fileContent = JSON.parse(fileContent);
-
-  console.log(fileContent.latitude);
-
+  let fileContent = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+  let {latitude, longitude, additionalData} = fileContent;
+  let distanceOffice = distance(latitude, longitude, 52.502931, 13.408249);
+  try {
+    await db.addGeo(fileName, latitude, longitude, additionalData, distanceOffice);
+  }catch(err) {
+    console.log("err in upload", err);
+  }
   res.json({success:true});
 });
+
+//calculates distance between geo locations with error up to 0.3 %
+function distance(lat1, lon1, lat2, lon2) {
+  let p = Math.PI / 180;
+  let c = Math.cos;
+  let a = 0.5 - c((lat2 - lat1) * p)/2 +
+          c(lat1 * p) * c(lat2 * p) *
+          (1 - c((lon2 - lon1) * p))/2;
+  let radiusEarth = 12742;
+  return radiusEarth * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
+}
 
 app.get("/api/location/names/", async (req, res) => {
   try {

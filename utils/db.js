@@ -6,11 +6,11 @@ const dbUrl =
 
 var db = spicedPg(dbUrl);
 
-module.exports.testAdd = function testAdd() {
+module.exports.addGeo = function addGeo(fileName, latitude, longitude, additionalData, distanceOffice) {
   return db.query(
     `
     INSERT INTO geo (name, latitude, longitude, additional, distance_office)
-    VALUES ('Berlin', 52.514818, 13.356101, 'xyc', 4);
-    `
+    VALUES ($1, $2, $3, $4, $5);
+    `, [fileName, latitude, longitude, additionalData, distanceOffice]
   );
 };

@@ -5,7 +5,7 @@ CREATE TABLE geo (
   name VARCHAR(255) NOT NULL,
   latitude FLOAT NOT NULL,
   longitude FLOAT NOT NULL,
-  additional VARCHAR(255) NOT NULL,
-  distance_office FLOAT NOT NULL,
+  additional VARCHAR(255),
+  distance_office FLOAT NOT NULl,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

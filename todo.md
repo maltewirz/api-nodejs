@@ -59,13 +59,13 @@
    1. Set up NodeJS Server -OK
    2. Set-up PostGres SQL Database -OK
    3. API POST Call with File
-      1. Read File 
-      2. parse Filename 
-      3. Parse file contents 
-      4. Handle empty inputs
-      5. Handle invalid inputs
-      6. Calculate each distance to office
-      7. Save to DB
+      1. Read File -OK
+      2. parse Filename  -OK
+      3. Parse file contents -OK
+      4. Handle empty inputs -OK
+      5. Handle invalid inputs -OK
+      6. Calculate each distance to office -OK
+      7. Save to DB -OK
    4. Test API GET Call
    5. API GET: send details of location
    6. Document and Comment
