@@ -66,6 +66,7 @@
       5. Handle invalid inputs -OK
       6. Calculate each distance to office -OK
       7. Save to DB -OK
-   4. Test API GET Call
-   5. API GET: send details of location
-   6. Document and Comment
+   4. Test API GET Call Names -OK
+   5. API GET: send details of location -OK
+   6. Handle edge cases
+   7. Document and Comment

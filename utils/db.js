@@ -14,3 +14,22 @@ module.exports.addGeo = function addGeo(fileName, latitude, longitude, additiona
     `, [fileName, latitude, longitude, additionalData, distanceOffice]
   );
 };
+
+module.exports.getNames = function getNames() {
+  return db.query(
+    `
+    SELECT name
+    FROM geo;
+    `
+  );
+};
+
+module.exports.queryGeo = function queryGeo(query) {
+  return db.query(
+    `
+    SELECT name, latitude, longitude, additional, distance_office
+    FROM geo
+    WHERE name ILIKE $1;
+    `,[query]
+  );
+};

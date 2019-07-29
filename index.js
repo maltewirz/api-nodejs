@@ -19,10 +19,10 @@ app.post("/api/upload/", upload.single("file"), async (req, res) => { // use key
   let distanceOffice = distance(latitude, longitude, 52.502931, 13.408249);
   try {
     await db.addGeo(fileName, latitude, longitude, additionalData, distanceOffice);
+    res.json({success:true});
   }catch(err) {
     console.log("err in upload", err);
   }
-  res.json({success:true});
 });
 
 //calculates distance between geo locations with error up to 0.3 %
@@ -38,10 +38,20 @@ function distance(lat1, lon1, lat2, lon2) {
 
 app.get("/api/location/names/", async (req, res) => {
   try {
-    console.log("incoming");
-    res.json({incoming: true});
+    let response =  await db.getNames();
+    res.json(response.rows);
   } catch(err) {
     console.log("err in /api/location/names/");
+  }
+});
+
+app.get("/api/location/:query", async (req, res) => {
+  let query = req.params.query.toLowerCase();
+  try {
+    let response = await db.queryGeo(query);
+    res.json(response.rows);
+  } catch(err) {
+    console.log("err in /api/location/:query");
   }
 });
 
