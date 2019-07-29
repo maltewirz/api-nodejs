@@ -68,5 +68,5 @@
       7. Save to DB -OK
    4. Test API GET Call Names -OK
    5. API GET: send details of location -OK
-   6. Handle edge cases
+   6. Handle edge cases -OK
    7. Document and Comment
