@@ -11,6 +11,8 @@
 
    Input:
 
+   Query to `/api/upload/`
+
    Berlin.json 
 
    1. ```js
@@ -54,13 +56,16 @@
    
 
 3. Break it down:
-   1. Set up NodeJS Server
-   2. Set-up PostGres SQL Database
-   3. Test API POST Call with File
-   4. Read File and parse Filename and its contents and save to DB
-      1. Handle empty inputs
-      2. Handle invalid inputs
-      3. Calculate each distance to office
-   5. Test API GET Call
-   6. API GET: send details of location
-   7. Document and Comment
+   1. Set up NodeJS Server -OK
+   2. Set-up PostGres SQL Database -OK
+   3. API POST Call with File
+      1. Read File 
+      2. parse Filename 
+      3. Parse file contents 
+      4. Handle empty inputs
+      5. Handle invalid inputs
+      6. Calculate each distance to office
+      7. Save to DB
+   4. Test API GET Call
+   5. API GET: send details of location
+   6. Document and Comment
